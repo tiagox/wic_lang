@@ -1,0 +1,20 @@
+def variableNumerica1 as numero
+def variableBooleana2 as booleano
+
+variableNumerica1 <- 123
+
+variableBooleana2 <- (variableNumerica1 < 200)
+
+while (variableBooleana2) {
+
+  {}
+
+  variableBooleana2 <- false
+}
+
+while ( not variableBooleana2 ) {
+
+  {}
+
+  variableBooleana2 <- true
+}
