@@ -1,20 +1,21 @@
-def variableNumerica1 as numero
-def variableBooleana2 as booleano
+def variableNumerica as number
+def variableBooleana as boolean
+def variableString as string
 
-variableNumerica1 <- 123
+variableNumerica <- 123
 
-variableBooleana2 <- (variableNumerica1 < 200)
-
-while (variableBooleana2) {
-
-  {}
-
-  variableBooleana2 <- false
+while (variableBooleana) {
+  variableBooleana <- false
 }
 
-while ( not variableBooleana2 ) {
+while (not variableBooleana) {
+  variableBooleana <- true
+}
 
-  {}
+variableString <- "Cocuzza"
 
-  variableBooleana2 <- true
+variableNumerica <- (variableNumerica - 10)
+
+if (variableNumerica <  124) {
+  variableBooleana <- (variableNumerica <  124)
 }
