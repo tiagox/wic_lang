@@ -55,11 +55,11 @@ booleano: BOOL
         | NUM OP_LOG VAR_NAME
         | VAR_NAME OP_LOG VAR_NAME { printf("boolean success.\n"); }
 
-bucle: WHILE LP booleano RP LC sentencia RC { printf("while success.\n"); }
-     | WHILE LP VAR_NAME RP LC sentencia RC { printf("while success.\n"); }
+bucle: WHILE LP booleano RP LC programa RC { printf("while success.\n"); }
+     | WHILE LP VAR_NAME RP LC programa RC { printf("while success.\n"); }
 
-condicional: IF LP booleano RP LC sentencia RC { printf("if success.\n"); }
-           | IF LP VAR_NAME RP LC sentencia RC { printf("if success.\n"); }
+condicional: IF LP booleano RP LC programa RC { printf("if success.\n"); }
+           | IF LP VAR_NAME RP LC programa RC { printf("if success.\n"); }
 %%
 //-- FUNCTION DEFINITIONS ---------------------------------
 int main() {
