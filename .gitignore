@@ -30,3 +30,6 @@
 
 # Compiler executable
 wic
+
+*.sublime-project
+*.sublime-workspace
