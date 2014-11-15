@@ -15,16 +15,19 @@ int i;
 %option noyywrap
 OP_ARI "+"|"-"|"*"|"/"
 OP_LOG "not"|"and"|"or"|">"|"<"|"="|"#"|">="|"<="
-CADENA \"[^\"]*["]
-VAL_BOOL "true"|"false"
+NUMBER "0"|(-)?[1-9][0-9]*(\.[0-9]+)?
+ZERO "0"
+STRING \"[^\"]*["]
+BOOLEAN "true"|"false"
+VAR_NAME [a-zA-Z][a-zA-Z0-9]*
 %%
 "def"                   { return DEF; }
 "as"                    { return AS; }
 "<-"                    { return ASSING; }
 {OP_ARI}                { return OP_ARI; }
 {OP_LOG}                { return OP_LOG; }
-"number"                { return TYPE_NUM; }
-"boolean"               { return TYPE_BOOL; }
+"number"                { return TYPE_NUMBER; }
+"boolean"               { return TYPE_BOOLEAN; }
 "string"                { return TYPE_STRING; }
 "if"                    { return IF; }
 "while"                 { return WHILE; }
@@ -32,24 +35,25 @@ VAL_BOOL "true"|"false"
 ")"                     { return RP; }
 "{"                     { return LC; }
 "}"                     { return RC; }
-{CADENA}                {
-                          for(i = 1; i < strlen(yytext) - 1; i++) {
-                            yytext[i - 1] = yytext[i];
-                          }
-                          yytext[i - 1] = '\0';
-                          strcpy(yylval.symbol, yytext);
+{STRING}                {
+                          // for(i = 1; i < strlen(yytext) - 1; i++) {
+                          //   yytext[i - 1] = yytext[i];
+                          // }
+                          // yytext[i - 1] = '\0';
+                          // strcpy(yylval.symbol, yytext);
+                          yylval.type = 2;
                           return STRING;
                         }
-{VAL_BOOL}              { return BOOL; }
-[1-9][0-9]*(\.[0-9]+)?  {
-                          yylval.value = atof(yytext);
-                          return NUM;
+{BOOLEAN}               {
+                          yylval.type = 1;
+                          return BOOLEAN;
                         }
-"0"                     {
-                          yylval.value = 0;
-                          return NUM;
+{NUMBER}                {
+                          // yylval.value = atof(yytext);
+                          yylval.type = 0;
+                          return NUMBER;
                         }
-[a-zA-Z][a-zA-Z0-9]*    {
+{VAR_NAME}              {
                           strcpy(yylval.symbol, yytext);
                           return VAR_NAME;
                         }
