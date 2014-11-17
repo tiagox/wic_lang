@@ -18,6 +18,7 @@ variableNumerica <- (variableNumerica - 10)
 
 if (variableNumerica <  124) {
   variableBooleana <- (variableNumerica <  124)
+  variableNumerica <- 0
 }
 
 while (not variableBooleana) {
