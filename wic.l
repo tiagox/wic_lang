@@ -4,19 +4,18 @@
  * variables: asd123 | asd | a1b2c3 | aVar | aVar123
  * number: 123 | 123.456 | 0123.000
  * boolean: true | false
- * string; "Solo string y con comillas dobles"
+ * string: "Solo string y con comillas dobles"
  * operadores aritméticos: + - * /
  * operadores lógicos: and or not < > = # >= <=
  */
 %{
+#include "data_structs.h"
 #include "y.tab.h"
-int i;
 %}
 %option noyywrap
 OP_ARI "+"|"-"|"*"|"/"
 OP_LOG "not"|"and"|"or"|">"|"<"|"="|"#"|">="|"<="
 NUMBER "0"|(-)?[1-9][0-9]*(\.[0-9]+)?
-ZERO "0"
 STRING \"[^\"]*["]
 BOOLEAN "true"|"false"
 VAR_NAME [a-zA-Z][a-zA-Z0-9]*

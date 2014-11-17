@@ -1,29 +1,17 @@
 %{
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-//-- Lexer prototype required by bison, aka getNextToken()
+#include "data_structs.h"
+
 int yylex();
 int yyerror(const char *p);
-
-typedef enum {
-  T_NUMBER = 0,
-  T_BOOLEAN = 1,
-  T_STRING = 2
-} SymbolType;
-
-typedef struct {
-  char name[50];
-  int type;
-} Symbol;
+int getType(char *name);
+void addNode(char *name, SymbolType type);
+void printSymbolTable();
 
 Symbol symbolTable[50];
 
 int symbolTableIndex;
-
-void addNode(char *name, SymbolType type);
-void printTable();
-int getType(char *name);
 
 %}
 //-- SYMBOL SEMANTIC VALUES -----------------------------
@@ -31,7 +19,7 @@ int getType(char *name);
   double value;
   char symbol[50];
   int type;
-};
+}
 
 %token <symbol> TYPE_NUMBER TYPE_BOOLEAN TYPE_STRING
 %token <symbol> DEF AS
@@ -43,7 +31,6 @@ int getType(char *name);
 %token <symbol> VAR_NAME
 %type <type> operacion asignacion
 %type <type> booleano
-
 
 //-- GRAMMAR RULES ---------------------------------------
 %%
