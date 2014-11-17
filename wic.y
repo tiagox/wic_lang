@@ -3,6 +3,8 @@
 #include <string.h>
 #include "data_structs.h"
 
+extern int yylineno;
+
 int yylex();
 int yyerror(const char *p);
 int getType(char *name);
@@ -321,7 +323,7 @@ int main() {
 }
 
 int yyerror(const char *p) {
-  fprintf(stderr, "Error!: %s.\n", p);
+  fprintf(stderr, "Error!: %s. On line: %d.\n", p, yylineno);
 }
 
 /**

@@ -13,6 +13,7 @@
 #include "y.tab.h"
 %}
 %option noyywrap
+%option yylineno
 OP_ARI "+"|"-"|"*"|"/"
 OP_LOG "not"|"and"|"or"|">"|"<"|"="|"#"|">="|"<="
 NUMBER "0"|(-)?[1-9][0-9]*(\.[0-9]+)?
