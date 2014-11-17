@@ -4,6 +4,7 @@
 #include "data_structs.h"
 
 extern int yylineno;
+extern FILE *yyin;
 
 int yylex();
 int yyerror(const char *p);
@@ -310,10 +311,12 @@ condicional: IF LP booleano RP LC programa RC {}
                                               }
 %%
 //-- FUNCTION DEFINITIONS ---------------------------------
-int main() {
+int main(int argc, char *argv[]) {
   symbolTableIndex = 0;
 
+  yyin = fopen(argv[1], "rt");
   yyparse();
+  fclose(yyin);
 
   printSymbolTable();
 
