@@ -19,6 +19,7 @@ int symbolTableIndex;
   double value;
   char symbol[50];
   int type;
+  Variable var;
 }
 
 %token <symbol> TYPE_NUMBER TYPE_BOOLEAN TYPE_STRING
@@ -311,13 +312,16 @@ int main() {
   symbolTableIndex = 0;
 
   yyparse();
+
+  printSymbolTable();
+
   printf("Compilacion existosa.\n");
+
   return 0;
 }
 
 int yyerror(const char *p) {
-  printf("Error!: %s.\n", p);
-  exit(1);
+  fprintf(stderr, "Error!: %s.\n", p);
 }
 
 /**
@@ -333,13 +337,6 @@ void addNode(char *name, SymbolType type) {
   symbolTableIndex++;
 }
 
-void printTable() {
-  int i;
-  for (i = 0; i < symbolTableIndex; i++) {
-    printf("%s\t%d\n", symbolTable[i].name, symbolTable[i].type);
-  }
-}
-
 /**
  * @param name Nombre de la variable.
  * @return     Retorna el tipo del simbolo. Si no existe, devuelve -1.
@@ -353,4 +350,20 @@ int getType(char *name) {
     i++;
   }
   return -1;
+}
+
+/**
+ * Imprime la tabla de símbolos.
+ */
+void printSymbolTable() {
+  int i;
+  char* type_name;
+  printf("Tabla de simbolos:\n");
+  printf("+----------------------+----------+\n");
+  printf("| Variable             | Tipo     |\n");
+  printf("+----------------------+----------+\n");
+  for (i = 0; i < symbolTableIndex; i++) {
+    printf("| %-20s | %-8s |\n", symbolTable[i].name, symbol_type_name[symbolTable[i].type]);
+  }
+  printf("+----------------------+----------+\n");
 }
