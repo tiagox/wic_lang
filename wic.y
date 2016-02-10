@@ -21,7 +21,7 @@ int symbolTableIndex;
 %union {
   double value;
   char symbol[50];
-  int type;
+  SymbolType type;
   Variable var;
 }
 
@@ -33,6 +33,7 @@ int symbolTableIndex;
 
 %token <type> NUMBER BOOLEAN STRING
 %token <symbol> VAR_NAME
+
 %type <type> operacion asignacion
 %type <type> booleano
 
@@ -326,7 +327,7 @@ int main(int argc, char *argv[]) {
 }
 
 int yyerror(const char *p) {
-  fprintf(stderr, "Error!: %s. On line: %d.\n", p, yylineno);
+  fprintf(stderr, "\e[1;29mError!: %s. On line: %d.\e[0m\n", p, yylineno);
 }
 
 /**

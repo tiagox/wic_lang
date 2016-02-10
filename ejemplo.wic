@@ -2,7 +2,10 @@ def variableNumerica as number
 def variableBooleana as boolean
 def variableString as string
 
-variableNumerica <- 123
+variableNumerica <- 0.123
+variableNumerica <- -0.123
+variableNumerica <- 0
+variableNumerica <- -0
 
 while (variableBooleana) {
   variableBooleana <- false

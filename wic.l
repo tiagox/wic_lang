@@ -16,7 +16,7 @@
 %option yylineno
 OP_ARI "+"|"-"|"*"|"/"
 OP_LOG "not"|"and"|"or"|">"|"<"|"="|"#"|">="|"<="
-NUMBER "0"|(-)?[1-9][0-9]*(\.[0-9]+)?
+NUMBER [0]|(-)?[0]\.[0-9]+|(-)?[1-9][0-9]*(\.[0-9]+)?
 STRING \"[^\"]*["]
 BOOLEAN "true"|"false"
 VAR_NAME [a-zA-Z][a-zA-Z0-9]*
